@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!--<link rel="stylesheet" type="text/css" href="../static/css/catalog.css">-->
+
+<section class="section-products">
+    <div class="container">
+        <div class="row start-text">
+            <div class="col-md-8 col-lg-6" style="padding-left:25px;padding-top:20px">
+                <div class="header">
+                    <h2>{{ name_title }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="pb-2 border-bottom"></div>
+        <div class="row" style="padding-top:20px">
+            {% for elem in list_products %}
+            <div class="col-md-6 col-lg-4 col-xl-3" style="padding-bottom:30px;">
+                <div class="card" style="width: 18rem;">
+                    <img src="../static/img/products/{{ elem[2] }}/{{ elem[3] }}" class="card-img-top" alt="">
+                    <div class="card-body" style="background-color:#FAEBD7">
+                        <h5 class="card-title">{{ elem[0] }}</h5>
+                        <h4 class="card-title">{{ elem[1] }} ₽</h4>
+                        {% if current_user.is_authenticated %}
+                            <a href="/add_to_cart/{{ elem[4] }}" class="btn btn-outline-primary">
+                                Добавить в корзину
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}
